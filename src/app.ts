@@ -1,6 +1,7 @@
 import * as bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
+import Log from "./middlewares/log";
 
 class App {
   public app: express.Application;
@@ -18,6 +19,7 @@ class App {
   private initMiddlewares() {
     this.app.use(bodyParser.json());
     this.app.use(cors());
+    this.app.use(Log.generateLog);
   }
 
   private initControllers(controllers: Array<any>) {
@@ -28,7 +30,6 @@ class App {
 
   public listen() {
     this.app.listen(this.port, () => {
-      // eslint-disable-next-line no-console
       console.log(`App listening on the port ${this.port}`);
     });
   }
