@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import User from "./user.interface";
 
 class UsersController {
@@ -21,11 +21,11 @@ class UsersController {
     this.router.post(this.path, this.createAUser);
   }
 
-  getAllUsers = (request: express.Request, response: express.Response) => {
+  getAllUsers = (request: Request, response: Response) => {
     response.send(this.users);
   };
 
-  createAUser = (request: express.Request, response: express.Response) => {
+  createAUser = (request: Request, response: Response) => {
     const user: User = request.body;
     this.users.push(user);
     response.send(user);
